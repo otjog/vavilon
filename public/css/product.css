@@ -76,34 +76,134 @@
     -ms-flex: 1;
     flex: 1;
 }
+
+.overflow-hidden { overflow: hidden; }
+
+
+
+/*
+ * ODOMETER
+ */
+.roller {
+    width: 350px;
+}
+
+.js-bounty {
+    background-image: url(../storage/images/backgrounds/kryptex-350.png);
+    background-size: cover;
+    height: 130px;
+    font-size: 23px;
+    letter-spacing: 1.0rem;
+    fill: #341a05;
+    color: #341a05;
+}
+
+.js-bounty .default-number {
+    padding-left: 25px;
+    padding-top: 44px;
+    display: block;
+}
+
+.js-bounty svg {
+    margin-left: 5px;
+    margin-top: 48px;
+}
+
+
+@media (min-width: 576px) {
+
+    .roller {
+        width: 550px;
+    }
+    .js-bounty {
+        background-image: url('../storage/images/backgrounds/kryptex-550.png');
+        height: 190px;
+        font-size: 44px;
+        letter-spacing: 1.29rem;
+    }
+    .js-bounty svg {
+        margin-left: 10px;
+        margin-top: 70px;
+    }
+
+    .js-bounty .default-number {
+        padding-left: 32px;
+        padding-top: 60px;
+        display: block;
+    }
+}
+
 @media (min-width: 768px) {
+    .roller {
+        width: 700px;
+    }
+    .js-bounty {
+        background-image: url('../storage/images/backgrounds/kryptex-750.png');
+        height: 260px;
+        font-size: 62px;
+        letter-spacing: 1.49rem;
+    }
+    .js-bounty svg {
+        margin-left: 14px;
+        margin-top: 86px;
+    }
+
+    .js-bounty .default-number {
+        padding-left: 40px;
+        padding-top: 72px;
+        display: block;
+    }
+
     .flex-md-equal > * {
         -ms-flex: 1;
         flex: 1;
     }
 }
 
-.overflow-hidden { overflow: hidden; }
+@media (min-width: 992px) {
+    .roller {
+        width: 900px;
+    }
 
-.roller {
-    width: 45rem;
+    .js-bounty {
+        background-image: url('../storage/images/backgrounds/kryptex-950.png');
+        height: 330px;
+        font-size: 75px;
+        letter-spacing: 2.07rem;
+    }
+
+    .js-bounty svg {
+        margin-left: 17px;
+        margin-top: 113px;
+    }
+
+    .js-bounty .default-number {
+        padding-left: 51px;
+        padding-top: 96px;
+        display: block;
+    }
 }
 
-.js-bounty {
-    background-image: url('../storage/images/backgrounds/roller.png');
-    background-size: cover;
-    height: 200px;
-}
+@media (min-width: 12000px) {
+    .roller {
+        width: 1100px;
+    }
 
-/*
- * ODOMETER
- */
-.js-bounty {
-    font-size: 20px;
-    fill: #341a05;
-    height: 16rem;
-}
-.js-bounty svg {
-    margin-left: 15px;
-    margin-top: 87px;
+    .js-bounty {
+        background-image: url('../storage/images/backgrounds/kryptex-1100.png');
+        height: 330px;
+        font-size: 75px;
+        letter-spacing: 2.07rem;
+    }
+
+    .js-bounty svg {
+        margin-left: 17px;
+        margin-top: 113px;
+    }
+
+    .js-bounty .default-number {
+        padding-left: 51px;
+        padding-top: 96px;
+        display: block;
+    }
 }

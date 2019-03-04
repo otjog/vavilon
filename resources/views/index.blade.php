@@ -24,7 +24,12 @@
                 <p>Можно выиграть ценный приз или действие</p>
                 <p class="lead">Все закономерности случайны, а случайности закономерны!</p>
                 <div class="roller mx-auto">
-                    <div class="js-bounty text-center"></div>
+                    <div
+                            class="js-bounty text-center">
+                        <span class="default-number">
+                            0000000
+                        </span>
+                    </div>
                 </div>
 
                 <h1 class="cover-heading text-center">Правила лотереи</h1>
@@ -49,7 +54,7 @@
         </div>
 
         <div class="d-md-flex flex-md-equal w-100 pl-md-3 bg-warning text-center">
-            <div class="col-md-8 p-lg-5 mx-auto my-5">
+            <div class="col-md-8 p-lg-5 py-3 mx-auto">
                 <h1>Скоро определятся новые победители</h1>
                 <p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple's marketing pages.</p>
                 <div style="font-size: 77px" id="timer"></div>
@@ -77,7 +82,7 @@
         </div>
 
         <div class="d-md-flex flex-md-equal w-100 pl-md-3 bg-primary">
-            <div class="col-md-8 p-lg-5 mx-auto my-5">
+            <div class="col-md-8 p-lg-5 py-3 mx-auto">
                 <p class="lead font-weight-normal">
                     Он (народ) добился, чтобы лотерея была тайной, бесплатной и всеобщей. Продажа жребиев за деньги была упразднена. Всякий свободный человек, пройдя посвящение в таинства Бела, автоматически становился участником священных жеребьевок, которые совершались в лабиринтах этого бога каждые шестьдесят ночей и определяли судьбу человека до следующей жеребьевки. Последствия были непредсказуемы. Счастливый розыгрыш мог возвысить его до Совета магов, или дать ему власть посадить в темницу своего врага (явного или тайного), или даровать свидание в уютной полутьме опочивальни с женщиной, которая начала его тревожить или которую он уже не надеялся увидеть снова; неудачная жеребьевка могла принести увечье, всевозможные виды позора, смерть.
                 </p>
@@ -157,16 +162,18 @@
         <!-- Scripts -->
         <script src="js/app.js" charset="utf-8"></script>
         <script>
+            /*
             bounty.default({
                 el: '.js-bounty',
                 value: Math.floor(Math.random()*10000000),
-                lineHeight: 1.35,
-                letterSpacing: 49,
+                lineHeight: 1,
+                letterSpacing: 16,
                 animationDelay: 100,
                 letterAnimationDelay: 500
             });
+            */
             /////////////////////////////
-            let timestamp = 1551498400000;
+            let timestamp = 1559498400000;
             let timerStr = '';
             let classStr = 'badge badge-light m-2';
             let htmlElementName = 'span';
@@ -196,6 +203,45 @@
                     });
                 }, false);
             })();
+
+            (function() {
+                'use strict';
+                window.addEventListener('resize', function(e) {
+                    e = e || event;
+
+                    let target = e.target || e.srcElement;
+
+                    let width = target.innerWidth;
+
+                    let rollerWrap = document.getElementsByClassName('roller');
+                    let bountyWrap = document.getElementsByClassName('js-bounty');
+                    let svg = bountyWrap[0].getElementsByTagName('svg');
+
+                    if(width < 576){
+                        startOdometer(14);
+                    }else if(width >= 992){
+                        startOdometer(33);
+                    }else if(width >= 768){
+                        startOdometer(24);
+                    }else if(width >= 576){
+                        startOdometer(20);
+                    }
+
+
+                }, false);
+            })();
+
+            function startOdometer(letterSpacing){
+                bounty.default({
+                    el: '.js-bounty',
+                    value: 1234567,
+                    lineHeight: 1,
+                    letterSpacing: letterSpacing,
+                    animationDelay: 0,
+                    letterAnimationDelay: 0
+                });
+            }
+
         </script>
 
     </body>
