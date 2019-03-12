@@ -10,6 +10,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
         <link rel="stylesheet" href="css/app.css">
 
         <link rel="stylesheet" href="css/product.css">
@@ -18,10 +20,42 @@
 
     <body>
 
+        <!-- -->
         <div class="position-relative overflow-hidden p-3 p-md-5 text-center main-block">
+
+            <div class="header">
+                <div class="navbar navbar-dark bg-transparent shadow-sm">
+                    <div class="container d-flex justify-content-between">
+
+                        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="row">
+                            <div class="col">
+                                <a href="#" class="navbar-brand d-flex align-items-center">
+                                    <strong><i class="fab fa-vk fa-2x"></i></strong>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="#" class="navbar-brand d-flex align-items-center">
+                                    <strong><i class="fab fa-facebook-f fa-2x"></i></strong>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="#" class="navbar-brand d-flex align-items-center">
+                                    <strong><i class="fab fa-instagram fa-2x"></i></strong>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
             <div class="cover text-center">
-                <h1 class="display-1">Вавилонская лотерея</h1>
-                <p>Можно выиграть ценный приз или действие</p>
+                <h1>Вавилонская лотерея</h1>
+                <p>Выиграй ценный приз или действие</p>
                 <p class="lead">Все закономерности случайны, а случайности закономерны!</p>
                 <div class="roller mx-auto">
                     <div
@@ -55,8 +89,7 @@
 
         <div class="d-md-flex flex-md-equal w-100 pl-md-3 bg-warning text-center">
             <div class="col-md-8 p-lg-5 py-3 mx-auto">
-                <h1>Скоро определятся новые победители</h1>
-                <p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple's marketing pages.</p>
+                <h1>Время до следующего розыгрыша</h1>
                 <div style="font-size: 77px" id="timer"></div>
 
                 @if (count($errors) > 0)
@@ -73,17 +106,20 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#modal">
-                    Получить номер
-                </button>
+
+                <div class="mt-5">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#modal">
+                        Получить вечный номер
+                    </button>
+                </div>
 
             </div>
         </div>
 
-        <div class="d-md-flex flex-md-equal w-100 pl-md-3 bg-primary">
-            <div class="col-md-8 p-lg-5 py-3 mx-auto">
-                <p class="lead font-weight-normal">
+        <div class="d-md-flex flex-md-equal w-100 pl-md-3 block-3">
+            <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded">
+                <p class="lead font-weight-normal ">
                     Он (народ) добился, чтобы лотерея была тайной, бесплатной и всеобщей. Продажа жребиев за деньги была упразднена. Всякий свободный человек, пройдя посвящение в таинства Бела, автоматически становился участником священных жеребьевок, которые совершались в лабиринтах этого бога каждые шестьдесят ночей и определяли судьбу человека до следующей жеребьевки. Последствия были непредсказуемы. Счастливый розыгрыш мог возвысить его до Совета магов, или дать ему власть посадить в темницу своего врага (явного или тайного), или даровать свидание в уютной полутьме опочивальни с женщиной, которая начала его тревожить или которую он уже не надеялся увидеть снова; неудачная жеребьевка могла принести увечье, всевозможные виды позора, смерть.
                 </p>
                 <div class="text-center">
@@ -218,7 +254,7 @@
                     let svg = bountyWrap[0].getElementsByTagName('svg');
 
                     if(width < 576){
-                        startOdometer(14);
+                        startOdometer(16);
                     }else if(width >= 992){
                         startOdometer(33);
                     }else if(width >= 768){
