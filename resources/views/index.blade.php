@@ -275,12 +275,14 @@
             /////////////////////////////
             let timestamp = 1559498400000;
             let timerStr = '';
-            let classStr = 'badge badge-light';
             let htmlParentElementName = 'div';
-            timerStr += '<' + htmlParentElementName + ' class="col-3 p-0"><span class="' + classStr + '">%D</span></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="col-3 p-0"><span class="' + classStr + '">%H</span></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="col-3 p-0"><span class="' + classStr + '">%M</span></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="col-3 p-0"><span class="' + classStr + '">%S</span></' + htmlParentElementName + '>';
+            let classParentStr = 'col-3 p-0';
+            let htmlChildElementName = 'span';
+            let classChildStr = 'badge badge-light';
+            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%D</' + htmlChildElementName + '></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%H</' + htmlChildElementName + '></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%M</' + htmlChildElementName + '></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%S</' + htmlChildElementName + '></' + htmlParentElementName + '>';
 
             $('#timer').countdown(timestamp, function(event) {
                 $(this).html(event.strftime(timerStr));
