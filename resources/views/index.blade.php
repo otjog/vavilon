@@ -20,8 +20,8 @@
 
     <body>
 
-        <!-- -->
-        <div class="position-relative overflow-hidden p-3 p-md-5 text-center main-block">
+        {{-- Block 1 --}}
+        <div class="position-relative overflow-hidden p-3 px-md-5 pb-md-5 text-center main-block">
 
             <div class="header">
                 <div class="navbar navbar-dark bg-transparent shadow-sm">
@@ -87,10 +87,11 @@
             </div>
         </div>
 
-        <div class="d-md-flex flex-md-equal w-100 pl-md-3 bg-warning text-center">
+        {{-- Block 2 --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-2">
             <div class="col-md-8 p-lg-5 py-3 mx-auto">
                 <h1>Время до следующего розыгрыша</h1>
-                <div style="font-size: 77px" id="timer"></div>
+                <div class="row" id="timer"></div>
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -109,7 +110,7 @@
 
                 <div class="mt-5">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#modal">
+                    <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#modal">
                         Получить вечный номер
                     </button>
                 </div>
@@ -117,20 +118,84 @@
             </div>
         </div>
 
-        <div class="d-md-flex flex-md-equal w-100 pl-md-3 block-3">
-            <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded">
+        {{-- Block 3 --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 block block-3">
+            <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-light">
                 <p class="lead font-weight-normal ">
                     Он (народ) добился, чтобы лотерея была тайной, бесплатной и всеобщей. Продажа жребиев за деньги была упразднена. Всякий свободный человек, пройдя посвящение в таинства Бела, автоматически становился участником священных жеребьевок, которые совершались в лабиринтах этого бога каждые шестьдесят ночей и определяли судьбу человека до следующей жеребьевки. Последствия были непредсказуемы. Счастливый розыгрыш мог возвысить его до Совета магов, или дать ему власть посадить в темницу своего врага (явного или тайного), или даровать свидание в уютной полутьме опочивальни с женщиной, которая начала его тревожить или которую он уже не надеялся увидеть снова; неудачная жеребьевка могла принести увечье, всевозможные виды позора, смерть.
                 </p>
-                <div class="text-center">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal">
-                        Получить вечный номер
-                    </button>
+            </div>
+            <div class="py-3 text-center">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal">
+                    Получить вечный номер
+                </button>
+            </div>
+        </div>
+
+        {{-- Block 4 --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 block block-4">
+            <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
+                <p class="lead font-weight-normal ">
+                    Он (народ) добился, чтобы лотерея была тайной, бесплатной и всеобщей. Продажа жребиев за деньги была упразднена. Всякий свободный человек, пройдя посвящение в таинства Бела, автоматически становился участником священных жеребьевок, которые совершались в лабиринтах этого бога каждые шестьдесят ночей и определяли судьбу человека до следующей жеребьевки. Последствия были непредсказуемы. Счастливый розыгрыш мог возвысить его до Совета магов, или дать ему власть посадить в темницу своего врага (явного или тайного), или даровать свидание в уютной полутьме опочивальни с женщиной, которая начала его тревожить или которую он уже не надеялся увидеть снова; неудачная жеребьевка могла принести увечье, всевозможные виды позора, смерть.
+                </p>
+            </div>
+            <div class="py-3 text-center">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal">
+                    Получить вечный номер
+                </button>
+            </div>
+        </div>
+
+        <footer class="container-fluid py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2" focusable="false" role="img"><title>Product</title><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+                        <small class="d-block mb-3 text-muted">© 2017-2018</small>
+                    </div>
+                    <div class="col-6 col-md">
+                        <h5>Features</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><a class="" href="#">Cool stuff</a></li>
+                            <li><a class="" href="#">Random feature</a></li>
+                            <li><a class="" href="#">Team feature</a></li>
+                            <li><a class="" href="#">Stuff for developers</a></li>
+                            <li><a class="" href="#">Another one</a></li>
+                            <li><a class="" href="#">Last time</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md">
+                        <h5>Resources</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><a class="" href="#">Resource</a></li>
+                            <li><a class="" href="#">Resource name</a></li>
+                            <li><a class="" href="#">Another resource</a></li>
+                            <li><a class="" href="#">Final resource</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md">
+                        <h5>Resources</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><a class="" href="#">Business</a></li>
+                            <li><a class="" href="#">Education</a></li>
+                            <li><a class="" href="#">Government</a></li>
+                            <li><a class="" href="#">Gaming</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md">
+                        <h5>About</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><a class="" href="#">Team</a></li>
+                            <li><a class="" href="#">Locations</a></li>
+                            <li><a class="" href="#">Privacy</a></li>
+                            <li><a class="" href="#">Terms</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-        </div>
+        </footer>
 
         <!-- Modal -->
         <div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -147,7 +212,7 @@
                         <div class="modal-body text-left">
                             <div class="form-group">
                                 <label for="name">Ваше Имя</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Укажите вашу имя" required>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Укажите вашу имя" required>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
@@ -157,7 +222,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone">Ваш телефон</label> <small>(10 цифр, без 8 или +7)</small>
-                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="пример: 9205743885" required>
+                                <input type="tel" class="form-control form-control-lg" id="phone" name="phone" placeholder="пример: 9205743885" required>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
@@ -167,7 +232,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Ваш email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Укажите ваш email" required>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Укажите ваш email" required>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
@@ -177,7 +242,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="city">Ваш город</label>
-                                <input type="text" class="form-control" id="city" name="city" placeholder="Укажите ваш город" required>
+                                <input type="text" class="form-control form-control-lg" id="city" name="city" placeholder="Укажите ваш город" required>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
@@ -186,9 +251,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                            <button type="submit" class="btn btn-primary">Отправить</button>
+                        <div class="modal-footer text-center">
+                            <button type="submit" class="btn btn-danger btn-block btn-lg">Отправить</button>
                         </div>
                     </form>
                 </div>
@@ -211,12 +275,12 @@
             /////////////////////////////
             let timestamp = 1559498400000;
             let timerStr = '';
-            let classStr = 'badge badge-light m-2';
-            let htmlElementName = 'span';
-            timerStr += '<' + htmlElementName + ' class="' + classStr + '">%D</' + htmlElementName + '>';
-            timerStr += '<' + htmlElementName + ' class="' + classStr + '">%H</' + htmlElementName + '>';
-            timerStr += '<' + htmlElementName + ' class="' + classStr + '">%M</' + htmlElementName + '>';
-            timerStr += '<' + htmlElementName + ' class="' + classStr + '">%S</' + htmlElementName + '>';
+            let classStr = 'badge badge-light';
+            let htmlParentElementName = 'div';
+            timerStr += '<' + htmlParentElementName + ' class="col-3 p-0"><span class="' + classStr + '">%D</span></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="col-3 p-0"><span class="' + classStr + '">%H</span></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="col-3 p-0"><span class="' + classStr + '">%M</span></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="col-3 p-0"><span class="' + classStr + '">%S</span></' + htmlParentElementName + '>';
 
             $('#timer').countdown(timestamp, function(event) {
                 $(this).html(event.strftime(timerStr));
