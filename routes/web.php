@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'IndexController@index');
 
 Route::resource('customers',    'CustomerController',   ['only' => ['store']]);
 
@@ -29,5 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     Route::resource('/lotteries',   'LotteryController',    ['only' => ['index', 'update']]);
 
-    Route::resource('/tasks',       'TaskController',       ['only' => ['index', 'create', 'store']]);
+    Route::resource('/tasks',       'TaskController',       ['only' => ['index', 'update', 'edit', 'create', 'store']]);
+
+    Route::resource('/news',        'NewsController',       ['only' => ['index', 'update', 'edit', 'create', 'store']]);
 });

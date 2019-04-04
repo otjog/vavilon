@@ -15,31 +15,41 @@
                         <th>Активность</th>
                         <th>Название</th>
                         <th>Описание</th>
+                        <th>Имя Участника</th>
+                        <th>Город Участника</th>
                         <th>Мобильный Участника</th>
                     </tr>
                     </thead>
                     <tbody>
 
                         @foreach($tasks as $task)
+
                             <tr>
                                 <td>{{$task->id}}</td>
                                 <td>
-                                    <form method="post" action="{{route('tasks.update', $task->id)}}">
-                                        {{csrf_field()}}
-                                        {{method_field('PUT')}}
-                                        <input type="hidden" name="active" value="{{$customer->active}}">
-                                        @if($customer->active)
-                                            <button type="submit" class="btn btn-link py-0 text-success">V</button>
+                                    <div class="text-center">
+                                        @if($task->active)
+                                            <span class="py-0 text-success">V</span>
                                         @else
-                                            <button type="submit" class="btn btn-link py-0 text-danger">X</button>
+                                            <span class="py-0 text-danger">X</span>
                                         @endif
-                                    </form>
+                                    </div>
                                 </td>
-                                <td>{{$task->name}}</td>
+                                <td><a href="{{route('tasks.edit', $task->id)}}">{{$task->name}}</a></td>
                                 <td>{{$task->description}}</td>
                                 <td>
-                                    @if(isset($task['customer']) && count($task['customer']) > 0 && $task['customer'] !== null)
-                                        Номер
+                                    @if(isset($task['customer']) && $task['customer'] !== null)
+                                        {{$task['customer']->name}}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($task['customer']) && $task['customer'] !== null)
+                                        {{$task['customer']->city}}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($task['customer']) && $task['customer'] !== null)
+                                        {{$task['customer']->phone}}
                                     @endif
                                 </td>
                             </tr>

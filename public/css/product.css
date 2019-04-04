@@ -92,13 +92,24 @@ input[type="email"]::placeholder { color: rgba(0,0,0,0.25); }
     background: transparent;
 }
 
-/* BLOCK-2 */
+/* BLOCK-TIMER */
 .block-2{
     background-color: rgb(255, 186, 0);
-    min-height: 500px;
+    min-height: 400px;
 }
 #timer {
     font-size: 55px;
+}
+
+#timer hr{
+    margin: 0;
+    border: 0;
+}
+
+#timer .timer_notation{
+    font-size: 20px;
+
+    display: block;
 }
 
 /* BLOCK-3 */
@@ -123,8 +134,14 @@ input[type="email"]::placeholder { color: rgba(0,0,0,0.25); }
 .block-4{
     background-image: url(../storage/images/backgrounds/block-4.jpg);
     background-size: cover;
-    min-height: 750px;
+    min-height: 350px;
 }
+
+/* BLOCK-CONTACT */
+.block-contact{
+    background-color: #b7099e;
+}
+
 
 /* FOOTER */
 footer{
@@ -205,6 +222,9 @@ footer li a{
 
     #timer {
         font-size: 75px;
+    }
+    #timer .timer_notation{
+        font-size: 30px;
     }
 }
 

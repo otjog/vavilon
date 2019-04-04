@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Task;
-use App\Models\Customer;
+use App\Models\News;
 
-class TaskController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::with('customer')->orderBy('created_at', 'desc')->get();
+        $news = News::orderBy('created_at', 'desc')->get();
 
-        return view( 'admin.component.task.index', ['tasks' => $tasks]);
+        return view( 'admin.component.news.index', ['news' => $news]);
     }
 
     /**
@@ -27,9 +26,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $customers = Customer::where('active', '=', 1)->get();
-
-        return view( 'admin.component.task.create', ['customers' => $customers]);
+        return view( 'admin.component.news.create');
     }
 
     /**
@@ -53,9 +50,9 @@ class TaskController extends Controller
             $data['active'] = 0;
         }
 
-        Task::create($data);
+        News::create($data);
 
-        return redirect('/admin/tasks');
+        return redirect('/admin/news');
     }
 
     /**
@@ -77,11 +74,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::with('customer')->where('id', '=', $id)->get();
+        $oneNews = News::where('id', '=', $id)->get();
 
-        $customers = Customer::where('active', '=', 1)->get();
-
-        return view( 'admin.component.task.edit', ['task' => $task[0], 'customers' => $customers]);
+        return view( 'admin.component.news.edit', ['oneNews' => $oneNews[0]]);
     }
 
     /**
@@ -106,11 +101,10 @@ class TaskController extends Controller
             $data['active'] = 0;
         }
 
-        Task::where('id', $id)
+        News::where('id', $id)
             ->update($data);
 
-        return redirect('/admin/tasks');
-
+        return redirect('/admin/news');
     }
 
     /**

@@ -87,10 +87,10 @@
             </div>
         </div>
 
-        {{-- Block 2 --}}
+        {{-- Block TIMER --}}
         <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-2">
             <div class="col-md-8 p-lg-5 py-3 mx-auto">
-                <h1>Время до следующего розыгрыша</h1>
+                <h2>Время до следующего розыгрыша</h2>
                 <div class="row" id="timer"></div>
 
                 @if (count($errors) > 0)
@@ -118,6 +118,26 @@
             </div>
         </div>
 
+        @if(isset($news) && $news !== null && count($news) > 0)
+            {{-- Block NEWS --}}
+            <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-news">
+                <div class="col-md-8 p-lg-5 py-3 mx-auto">
+                    <h2>Последние новости</h2>
+                    @foreach($news as $oneNews)
+                        <div class="col">
+                            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <h3 class="mb-0">{{$oneNews->name}}</h3>
+                                    <div class="mb-1 text-muted">{{$oneNews->created_at}}</div>
+                                    <p class="card-text mb-auto">{{$oneNews->description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
         {{-- Block 3 --}}
         <div class="d-md-flex flex-column w-100 pl-md-3 block block-3">
             <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-light">
@@ -137,7 +157,8 @@
         <div class="d-md-flex flex-column w-100 pl-md-3 block block-4">
             <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
                 <p class="lead font-weight-normal ">
-                    Он (народ) добился, чтобы лотерея была тайной, бесплатной и всеобщей. Продажа жребиев за деньги была упразднена. Всякий свободный человек, пройдя посвящение в таинства Бела, автоматически становился участником священных жеребьевок, которые совершались в лабиринтах этого бога каждые шестьдесят ночей и определяли судьбу человека до следующей жеребьевки. Последствия были непредсказуемы. Счастливый розыгрыш мог возвысить его до Совета магов, или дать ему власть посадить в темницу своего врага (явного или тайного), или даровать свидание в уютной полутьме опочивальни с женщиной, которая начала его тревожить или которую он уже не надеялся увидеть снова; неудачная жеребьевка могла принести увечье, всевозможные виды позора, смерть.
+                    Весь Вавилон - не что иное, как бесконечная игра случайностей"
+                    Хорхе Луис Борхес "Лотерея в Вавилоне"
                 </p>
             </div>
             <div class="py-3 text-center">
@@ -145,6 +166,34 @@
                 <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal">
                     Получить вечный номер
                 </button>
+            </div>
+        </div>
+
+        {{-- Block CONTACT --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-contact">
+            <div class="col-md-8 p-lg-5 py-3 mx-auto">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <div class="my-5">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#contact">
+                        Обращение в компанию
+                    </button>
+                </div>
+
             </div>
         </div>
 
@@ -259,6 +308,53 @@
             </div>
         </div>
 
+        <div class="modal" id="contact" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Отправить запрос в нашу компанию</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form method="post" class="needs-validation" novalidate>
+                        {{ csrf_field() }}
+                        <div class="modal-body text-left">
+                            <div class="form-group">
+                                <label for="name">Ваше Имя</label>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Укажите вашу имя" required>
+                                <div class="valid-feedback">
+                                    Корректные данные
+                                </div>
+                                <div class="invalid-feedback">
+                                    Укажите ваше имя
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Ваш email</label>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Укажите ваш email" required>
+                                <div class="valid-feedback">
+                                    Корректные данные
+                                </div>
+                                <div class="invalid-feedback">
+                                    Укажите ваш email
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Ваше сообщение</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <div class="invalid-feedback">
+                                    Напишите что-нибудь)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="submit" class="btn btn-danger btn-block btn-lg">Отправить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Scripts -->
         <script src="js/app.js" charset="utf-8"></script>
         <script>
@@ -279,10 +375,11 @@
             let classParentStr = 'col-3 p-0';
             let htmlChildElementName = 'span';
             let classChildStr = 'badge badge-light';
-            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%D</' + htmlChildElementName + '></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%H</' + htmlChildElementName + '></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%M</' + htmlChildElementName + '></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%S</' + htmlChildElementName + '></' + htmlParentElementName + '>';
+
+            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%D</' + htmlChildElementName + '><span class="timer_notation">Дни</span></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%H</' + htmlChildElementName + '><span class="timer_notation">Часы</span></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%M</' + htmlChildElementName + '><span class="timer_notation">Минуты</span></' + htmlParentElementName + '>';
+            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%S</' + htmlChildElementName + '><span class="timer_notation">Секунды</span></' + htmlParentElementName + '>';
 
             $('#timer').countdown(timestamp, function(event) {
                 $(this).html(event.strftime(timerStr));
