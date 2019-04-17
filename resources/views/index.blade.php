@@ -54,12 +54,11 @@
             </div>
 
             <div class="cover text-center">
-                <h1>Вавилонская лотерея</h1>
+                <h1 class="gotic-fonts">Вавилонская лотерея</h1>
                 <p>Выиграй ценный приз или действие</p>
                 <p class="lead">Все закономерности случайны, а случайности закономерны!</p>
                 <div class="roller mx-auto">
-                    <div
-                            class="js-bounty text-center">
+                    <div class="js-bounty text-center">
                         <span class="default-number">
                             0000000
                         </span>
@@ -121,10 +120,23 @@
         @if(isset($news) && $news !== null && count($news) > 0)
             {{-- Block NEWS --}}
             <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-news">
-                <div class="col-md-8 p-lg-5 py-3 mx-auto">
-                    <h2>Последние новости</h2>
-                    @foreach($news as $oneNews)
-                        <div class="col">
+                <div class="col-md-8 p-lg-3 pb-lg-5 py-3 mx-auto">
+                    <h2 class="gotic-fonts text-light">Новости компании</h2>
+
+                    <div class="card-deck pb-lg-5">
+                        @foreach($news as $oneNews)
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$oneNews->name}}</h5>
+                                    <p class="card-text">{{$oneNews->description}}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">{{$oneNews->created_at}}</small>
+                                </div>
+                            </div>
+
+                        <!--div class="col">
                             <div class="card flex-md-row mb-4 shadow-sm h-md-250">
                                 <div class="card-body d-flex flex-column align-items-start">
                                     <h3 class="mb-0">{{$oneNews->name}}</h3>
@@ -132,8 +144,10 @@
                                     <p class="card-text mb-auto">{{$oneNews->description}}</p>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        </div-->
+                        @endforeach
+                    </div>
+
                 </div>
             </div>
         @endif
@@ -143,22 +157,6 @@
             <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-light">
                 <p class="lead font-weight-normal ">
                     Он (народ) добился, чтобы лотерея была тайной, бесплатной и всеобщей. Продажа жребиев за деньги была упразднена. Всякий свободный человек, пройдя посвящение в таинства Бела, автоматически становился участником священных жеребьевок, которые совершались в лабиринтах этого бога каждые шестьдесят ночей и определяли судьбу человека до следующей жеребьевки. Последствия были непредсказуемы. Счастливый розыгрыш мог возвысить его до Совета магов, или дать ему власть посадить в темницу своего врага (явного или тайного), или даровать свидание в уютной полутьме опочивальни с женщиной, которая начала его тревожить или которую он уже не надеялся увидеть снова; неудачная жеребьевка могла принести увечье, всевозможные виды позора, смерть.
-                </p>
-            </div>
-            <div class="py-3 text-center">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal">
-                    Получить вечный номер
-                </button>
-            </div>
-        </div>
-
-        {{-- Block 4 --}}
-        <div class="d-md-flex flex-column w-100 pl-md-3 block block-4">
-            <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
-                <p class="lead font-weight-normal ">
-                    Весь Вавилон - не что иное, как бесконечная игра случайностей"
-                    Хорхе Луис Борхес "Лотерея в Вавилоне"
                 </p>
             </div>
             <div class="py-3 text-center">
@@ -192,8 +190,33 @@
                     <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#contact">
                         Обращение в компанию
                     </button>
+                    <div class="p-2">
+                        <p>
+                            Идеи, доносы, другие сообщения
+                        </p>
+                    </div>
                 </div>
+            </div>
+        </div>
 
+        {{-- Block 4 --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 py-lg-5 block block-4">
+            <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
+                <p class="lead font-weight-normal ">
+                    Весь Вавилон - не что иное, как бесконечная игра случайностей"
+                    Хорхе Луис Борхес "Лотерея в Вавилоне"
+                </p>
+            </div>
+            <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
+                <p class="lead font-weight-normal ">
+                    Жизнь человека в Вавилоне подчинена Случаю, который входит в нее через лотерею. И уже не отличишь естественную случайность от результата лотерейных жеребьевок…
+                </p>
+            </div>
+            <div class="py-3 text-center">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal">
+                    Получить вечный номер
+                </button>
             </div>
         </div>
 
