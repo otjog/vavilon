@@ -22,6 +22,9 @@ h1.gotic-fonts {
 h2.gotic-fonts {
     font-size: 5rem ;
 }
+h3.gotic-fonts {
+    font-size: 4rem ;
+}
 .container {
     max-width: 960px;
 }
@@ -159,9 +162,16 @@ h2.gotic-fonts {
     min-height: 350px;
 }
 
+/* BLOCK-5*/
+.block-5{
+    background-color: rgb(255, 186, 0);
+    font-size: 2rem;
+}
+
 /* BLOCK-CONTACT */
 .block-contact{
     background-color: rgb(255, 186, 0);
+
 }
 
 

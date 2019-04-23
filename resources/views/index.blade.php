@@ -33,19 +33,17 @@
 
                         <div class="row">
                             <div class="col">
-                                <a href="#" class="navbar-brand d-flex align-items-center">
+                                <a href="https://vk.com/lotovavilon" target="_blank" class="navbar-brand d-flex align-items-center">
                                     <strong><i class="fab fa-vk fa-2x"></i></strong>
                                 </a>
                             </div>
                             <div class="col">
-                                <a href="#" class="navbar-brand d-flex align-items-center">
-                                    <strong><i class="fab fa-facebook-f fa-2x"></i></strong>
-                                </a>
+
                             </div>
-                            <div class="col">
-                                <a href="#" class="navbar-brand d-flex align-items-center">
-                                    <strong><i class="fab fa-instagram fa-2x"></i></strong>
-                                </a>
+                            <div class="col my-auto">
+                                <span style="font-size: 1.5rem">
+                                    18+
+                                </span>
                             </div>
                         </div>
 
@@ -55,8 +53,7 @@
 
             <div class="cover text-center">
                 <h1 class="gotic-fonts">Вавилонская лотерея</h1>
-                <p>Выиграй ценный приз или действие</p>
-                <p class="lead">Все закономерности случайны, а случайности закономерны!</p>
+                <h2>Выиграй ценный приз или действие</h2>
                 <div class="roller mx-auto">
                     <div class="js-bounty text-center">
                         <span class="default-number">
@@ -65,19 +62,19 @@
                     </div>
                 </div>
 
-                <h1 class="cover-heading text-center">Правила лотереи</h1>
+                <h3 class="cover-heading text-center gotic-fonts">Правила лотереи</h3>
                 <div class="container text-left">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <ul>
-                                <li>Розыгрыш проводится каждый день</li>
+                                <li>Розыгрыш проводится каждую неделю</li>
                                 <li>Получить номер можно только на условиях Компании</li>
                                 <li>Номер - вечный</li>
                             </ul>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <ul>
-                                <li>Один человек может иметь множество номеров</li>
+                                <li>Номер - бесплатный</li>
                                 <li>Результаты выигрыша отправляются СМС сообщением и публикуются на сайте</li>
                             </ul>
                         </div>
@@ -89,7 +86,7 @@
         {{-- Block TIMER --}}
         <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-2">
             <div class="col-md-8 p-lg-5 py-3 mx-auto">
-                <h2>Время до следующего розыгрыша</h2>
+                <h2 class="gotic-fonts">Время до следующего розыгрыша</h2>
                 <div class="row" id="timer"></div>
 
                 @if (count($errors) > 0)
@@ -120,7 +117,7 @@
         @if(isset($news) && $news !== null && count($news) > 0)
             {{-- Block NEWS --}}
             <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-news">
-                <div class="col-md-8 p-lg-3 pb-lg-5 py-3 mx-auto">
+                <div class="col-md-8 p-lg-3 py-lg-5 py-3 mx-auto">
                     <h2 class="gotic-fonts text-light">Новости компании</h2>
 
                     <div class="card-deck pb-lg-5">
@@ -151,6 +148,23 @@
                 </div>
             </div>
         @endif
+
+        {{-- Block 5 --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 text-center gotic-fonts block block-5">
+            <div class="col-md-8 p-lg-5 py-3 mx-auto">
+                <p>
+                    Если выиграно действие!
+                </p>
+                <ul class="list-unstyled" style="line-height: 2rem">
+                    <li>Выигранное действие знаете только Вы;</li>
+                    <li>Действие может иметь понятную цель, быть звеном в общей цепи событий, а может быть абсолютно бессмысленным;</li>
+                    <li>Для Компании нет никаких моральных принципов при присуждении действия.</li>
+                </ul>
+                <p>
+                    Действуй!
+                </p>
+            </div>
+        </div>
 
         {{-- Block 3 --}}
         <div class="d-md-flex flex-column w-100 pl-md-3 block block-3">
@@ -220,50 +234,17 @@
             </div>
         </div>
 
-        <footer class="container-fluid py-5">
+        <footer class="container-fluid py-5 text-center">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2" focusable="false" role="img"><title>Product</title><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
-                        <small class="d-block mb-3 text-muted">© 2017-2018</small>
-                    </div>
-                    <div class="col-6 col-md">
-                        <h5>Features</h5>
-                        <ul class="list-unstyled text-small">
-                            <li><a class="" href="#">Cool stuff</a></li>
-                            <li><a class="" href="#">Random feature</a></li>
-                            <li><a class="" href="#">Team feature</a></li>
-                            <li><a class="" href="#">Stuff for developers</a></li>
-                            <li><a class="" href="#">Another one</a></li>
-                            <li><a class="" href="#">Last time</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md">
-                        <h5>Resources</h5>
-                        <ul class="list-unstyled text-small">
-                            <li><a class="" href="#">Resource</a></li>
-                            <li><a class="" href="#">Resource name</a></li>
-                            <li><a class="" href="#">Another resource</a></li>
-                            <li><a class="" href="#">Final resource</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md">
-                        <h5>Resources</h5>
-                        <ul class="list-unstyled text-small">
-                            <li><a class="" href="#">Business</a></li>
-                            <li><a class="" href="#">Education</a></li>
-                            <li><a class="" href="#">Government</a></li>
-                            <li><a class="" href="#">Gaming</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md">
-                        <h5>About</h5>
-                        <ul class="list-unstyled text-small">
-                            <li><a class="" href="#">Team</a></li>
-                            <li><a class="" href="#">Locations</a></li>
-                            <li><a class="" href="#">Privacy</a></li>
-                            <li><a class="" href="#">Terms</a></li>
-                        </ul>
+
+                        <h2 class="gotic-fonts">
+                            ВАВИЛОНСКАЯ ЛОТЕРЕЯ
+                        </h2>
+                        <p class="gotic-fonts" style="font-size: 1.5rem">
+                            По мотивам рассказа Луи Хорхе Борхеса "Лотерея в Вавилоне".
+                        </p>
                     </div>
                 </div>
             </div>
