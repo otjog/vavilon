@@ -234,6 +234,61 @@
             </div>
         </div>
 
+        {{-- Block 6 --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-contact">
+            <div class="col-md-8 my-lg-5 p-lg-5 py-3 mx-auto">
+                <h2 class="gotic-fonts">
+                    Компания думает о вас!
+                </h2>
+            </div>
+        </div>
+
+        {{-- Block Sending --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 pt-5 text-center block block-sending">
+
+            <h2 class="gotic-fonts">Сотрудничество с Компанией</h2>
+
+            <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
+                <p class="lead font-weight-normal ">
+                    Каждый человек, если он этого хочет, может принять участие в жизни «Вавилонской лотереи».
+                </p>
+                <p class="lead font-weight-normal ">
+                    Как это сделать?
+                </p>
+                <p class="lead font-weight-normal ">
+                    Существует много возможностей способствовать развитию «Вавилонской лотереи».
+
+                    Компания нуждается в людях, знаниях, экспертах, финансовых источниках, нуждается в контактах с отдельными лицами и организациями, способными помочь.
+
+                    Если вы хотите больше узнать о том, как присоединиться, пожалуйста, свяжитесь с нашим представителем.
+                </p>
+            </div>
+
+            <div class="col-md-8 p-lg-5 py-3 mx-auto">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <div class="my-5">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#contact">
+                        Обращение в компанию
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <footer class="container-fluid py-5 text-center">
             <div class="container">
                 <div class="row">

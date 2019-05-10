@@ -18,6 +18,7 @@ input[type="email"]::placeholder { color: rgba(0,0,0,0.25); }
 }
 h1.gotic-fonts {
     font-size: 6rem ;
+    line-height: 5rem;
 }
 h2.gotic-fonts {
     font-size: 5rem ;
@@ -171,6 +172,15 @@ h3.gotic-fonts {
 /* BLOCK-CONTACT */
 .block-contact{
     background-color: rgb(255, 186, 0);
+
+}
+
+/* BLOCK-SENDING */
+.block-sending{
+    background-image: url(../storage/images/backgrounds/block-sending.jpg);
+    background-position-y: -500px;
+    background-size: cover;
+    min-height: 350px;
 
 }
 
