@@ -52,7 +52,7 @@
             </div>
 
             <div class="cover text-center">
-                <h1 class="gotic-fonts">Вавилонская лотерея</h1>
+                <h1 class="gotic-fonts mb-4">Вавилонская лотерея</h1>
                 <h2>Выиграй ценный приз или действие</h2>
                 <div class="roller mx-auto">
                     <div class="js-bounty text-center">
@@ -173,12 +173,6 @@
                     Он (народ) добился, чтобы лотерея была тайной, бесплатной и всеобщей. Продажа жребиев за деньги была упразднена. Всякий свободный человек, пройдя посвящение в таинства Бела, автоматически становился участником священных жеребьевок, которые совершались в лабиринтах этого бога каждые шестьдесят ночей и определяли судьбу человека до следующей жеребьевки. Последствия были непредсказуемы. Счастливый розыгрыш мог возвысить его до Совета магов, или дать ему власть посадить в темницу своего врага (явного или тайного), или даровать свидание в уютной полутьме опочивальни с женщиной, которая начала его тревожить или которую он уже не надеялся увидеть снова; неудачная жеребьевка могла принести увечье, всевозможные виды позора, смерть.
                 </p>
             </div>
-            <div class="py-3 text-center">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal">
-                    Получить вечный номер
-                </button>
-            </div>
         </div>
 
         {{-- Block CONTACT --}}
@@ -218,15 +212,23 @@
             <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
                 <p class="lead font-weight-normal ">
                     Весь Вавилон - не что иное, как бесконечная игра случайностей"
-                    Хорхе Луис Борхес "Лотерея в Вавилоне"
+                    Хорхе Луи Борхес "Лотерея в Вавилоне"
                 </p>
             </div>
             <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
                 <p class="lead font-weight-normal ">
                     Жизнь человека в Вавилоне подчинена Случаю, который входит в нее через лотерею. И уже не отличишь естественную случайность от результата лотерейных жеребьевок…
                 </p>
+
+                <div class="py-3 d-md-none d-sm-block text-center">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal">
+                        Получить вечный номер
+                    </button>
+                </div>
+
             </div>
-            <div class="py-3 text-center">
+            <div class="py-3 d-none d-md-block text-center">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal">
                     Получить вечный номер
@@ -298,7 +300,7 @@
                             ВАВИЛОНСКАЯ ЛОТЕРЕЯ
                         </h2>
                         <p class="gotic-fonts" style="font-size: 1.5rem">
-                            По мотивам рассказа Луи Хорхе Борхеса "Лотерея в Вавилоне".
+                            По мотивам рассказа Хорхе Луи Борхеса "Лотерея в Вавилоне".
                         </p>
                     </div>
                 </div>
