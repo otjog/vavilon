@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <h2>Создать задачу</h2>
+
+        <h2>Редактировать новость</h2>
         <form method="post" action="{{route('news.update', $oneNews->id)}}">
             {{csrf_field()}}
             <input type="hidden" name="_method" value="PUT">
@@ -33,5 +33,5 @@
             </div>
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </form>
-    </main>
+
 @endsection

@@ -177,7 +177,6 @@ h3.gotic-fonts {
 /* BLOCK-SENDING */
 .block-sending{
     background-image: url(../storage/images/backgrounds/block-sending.jpg);
-    background-position-y: -500px;
     background-size: cover;
     min-height: 350px;
 

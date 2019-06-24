@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Lottery;
+use App\Models\Event;
 
-class LotteryController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,11 @@ class LotteryController extends Controller
      */
     public function index()
     {
-        $lotteries = Lottery::with('keys')->orderBy('created_at', 'desc')->get();
+        $eventsModel = new Event();
 
-        return view( 'admin.component.lottery.index', ['lotteries' => $lotteries]);
+        $events = $eventsModel->getActiveEvents();
+
+        return view( 'admin.component.event.index', ['events' => $events]);
     }
 
     /**
@@ -26,7 +28,7 @@ class LotteryController extends Controller
      */
     public function create()
     {
-        return view( 'admin.component.lottery.create');
+        //
     }
 
     /**
@@ -37,22 +39,7 @@ class LotteryController extends Controller
      */
     public function store(Request $request)
     {
-        $wasteArray = [
-            '_token' => '',
-            '_method' => ''
-        ];
-
-        $data = array_diff_key($request->all(), $wasteArray);
-
-        if(isset($data['active'])){
-            $data['active'] = 1;
-        }else{
-            $data['active'] = 0;
-        }
-
-        Lottery::create($data);
-
-        return redirect('/admin/lotteries');
+        //
     }
 
     /**
@@ -74,7 +61,9 @@ class LotteryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event::where('id', '=', $id)->get();
+
+        return view( 'admin.component.event.edit', ['event' => $event[0]]);
     }
 
     /**
@@ -86,7 +75,26 @@ class LotteryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request['time'] = date('i H d m', $request['timestamp']) . ' *';
+
+        $wasteArray = [
+            '_token' => '',
+            '_method' => '',
+            'timestamp' => ''
+        ];
+
+        $data = array_diff_key($request->all(), $wasteArray);
+
+        if(isset($data['active'])){
+            $data['active'] = 1;
+        }else{
+            $data['active'] = 0;
+        }
+
+        Event::where('id', $id)
+            ->update($data);
+
+        return redirect('/admin/events');
     }
 
     /**

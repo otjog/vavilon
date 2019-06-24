@@ -6,11 +6,11 @@
  */
 
 require('./bootstrap');
-require('./custom');
 window.bounty = require('bounty');
 
 require('jquery-countdown');
-
+require('datetimepicker/dist/DateTimePicker.min');
+require('./custom');
 
 //window.Vue = require('vue');
 

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h2>Игроки</h2>
         @if(isset($customers) && count($customers) > 0 && $customers !== null)
             <div class="table-responsive">
@@ -111,7 +110,6 @@
                 </table>
             </div>
         @endif
-    </main>
 
     <div class="modal fade" id="customerMailModal" tabindex="-1" role="dialog" aria-labelledby="customerMailModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

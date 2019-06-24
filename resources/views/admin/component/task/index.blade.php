@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <h2>Задачи</h2>
 
         <a class="btn btn-primary btn-sm" href="{{route('tasks.create')}}">Создать задачу</a>
@@ -58,6 +57,6 @@
                 </table>
             </div>
         @endif
-    </main>
+
 
 @endsection

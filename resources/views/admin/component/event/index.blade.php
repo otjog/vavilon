@@ -2,35 +2,36 @@
 
 @section('content')
 
-        <h2>Последние новости</h2>
-        <a class="btn btn-primary btn-sm" href="{{route('news.create')}}">Создать новость</a>
-        @if(isset($news) && count($news) > 0 && $news !== null)
+        <h2>Виды розыгрышей</h2>
+        @if(isset($events) && count($events) > 0 && $events !== null)
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
                         <th>#</th>
                         <th>Активность</th>
-                        <th>Заголовок</th>
-                        <th>Дата создания</th>
+                        <th>Название</th>
+                        <th>Время проведения</th>
+                        <th>Изменить</th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    @foreach($news as $oneNews)
+                    @foreach($events as $event)
                         <tr>
-                            <td>{{$oneNews->id}}</td>
+                            <td>{{$event->id}}</td>
                             <td>
-                                <div class="text-center">
-                                    @if($oneNews->active)
+                                <div class="">
+                                    @if($event->active)
                                         <span class="py-0 text-success">V</span>
                                     @else
                                         <span class="py-0 text-danger">X</span>
                                     @endif
                                 </div>
                             </td>
-                            <td><a href="{{route('news.edit', $oneNews->id)}}">{{$oneNews->name}}</a> </td>
-                            <td>{{$oneNews->created_at}}</td>
+                            <td>{{$event->name}}</td>
+                            <td>{{$event->datetime}}</td>
+                            <td>    <a class="btn btn-primary btn-sm" href="{{route('events.edit', $event->id)}}">{{$event->button_header}}</a></td>
                         </tr>
                     @endforeach
                     </tbody>

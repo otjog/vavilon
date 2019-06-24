@@ -2,6 +2,10 @@
 
 namespace App\Console;
 
+use App\Models\Key;
+use App\Models\Lottery;
+use Illuminate\Support\Facades\DB;
+use App\Models\Event;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,8 +28,32 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $events = new Event();
+        $event = $events->getNextEvent();
+
+        $timestampNow = round((time()+10800)/60)*60;
+        $timestampEvent = round( $event->timestamp/60)*60;
+
+        $schedule->call(function () use ($timestampNow, $timestampEvent) {
+            if ($timestampNow === $timestampEvent) {
+
+                $keys = Key::select('id')
+                    ->where('active', 1)
+                    ->get();
+
+                $count = count($keys);
+
+                $winner = $keys[rand(0, $count-1)];
+
+                $lottery = new Lottery();
+
+                $lottery->active = 1;
+                $lottery->key_id = $winner->id;
+
+                $lottery->save();
+
+            }
+        })->everyMinute();
     }
 
     /**

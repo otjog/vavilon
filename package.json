@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bounty": "^1.2.1",
+        "datetimepicker": "^0.1.39",
         "gulp": "^4.0.0",
         "jquery-countdown": "^2.2.0"
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
         <h2>Создать задачу</h2>
         <form method="post" action="{{route('tasks.store')}}">
             {{csrf_field()}}
@@ -38,5 +38,5 @@
             </div>
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </form>
-    </main>
+
 @endsection

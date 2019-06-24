@@ -55,9 +55,9 @@
                 <h1 class="gotic-fonts mb-4">Вавилонская лотерея</h1>
                 <h2>Выиграй ценный приз или действие</h2>
                 <div class="roller mx-auto">
-                    <div class="js-bounty text-center">
+                    <div class="js-bounty text-center" data-lotterykey="{{isset($lotteries[0]->keys->key) ? $lotteries[0]->keys->key : '0000000' }}">
                         <span class="default-number">
-                            0000000
+                           {{isset($lotteries[0]->keys->key) ? $lotteries[0]->keys->key : '0000000' }}
                         </span>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
         <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-2">
             <div class="col-md-8 p-lg-5 py-3 mx-auto">
                 <h2 class="gotic-fonts">Время до следующего розыгрыша</h2>
-                <div class="row" id="timer"></div>
+                <div class="row" id="timer" data-timestamp="{{$event->timestamp}}"></div>
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -98,9 +98,9 @@
                         </ul>
                     </div>
                 @endif
-                @if (session('status'))
+                @if (session('status_new_customer'))
                     <div class="alert alert-success">
-                        {{ session('status') }}
+                        {{ session('status_new_customer') }}
                     </div>
                 @endif
 
@@ -114,40 +114,66 @@
             </div>
         </div>
 
-        @if(isset($news) && $news !== null && count($news) > 0)
-            {{-- Block NEWS --}}
-            <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-news">
+        {{-- Block NEWS --}}
+        <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-news">
                 <div class="col-md-8 p-lg-3 py-lg-5 py-3 mx-auto">
-                    <h2 class="gotic-fonts text-light">Новости компании</h2>
+                    @if(isset($news) && $news !== null && count($news) > 0)
+                        <h2 class="gotic-fonts text-light">Новости компании</h2>
 
-                    <div class="card-deck pb-lg-5">
-                        @foreach($news as $oneNews)
+                        <div class="card-deck pb-lg-5">
+                            @foreach($news as $oneNews)
 
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$oneNews->name}}</h5>
-                                    <p class="card-text">{{$oneNews->description}}</p>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$oneNews->name}}</h5>
+                                        <p class="card-text">{{$oneNews->description}}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">{{$oneNews->created_at}}</small>
+                                    </div>
                                 </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">{{$oneNews->created_at}}</small>
-                                </div>
-                            </div>
 
-                        <!--div class="col">
-                            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                <div class="card-body d-flex flex-column align-items-start">
-                                    <h3 class="mb-0">{{$oneNews->name}}</h3>
-                                    <div class="mb-1 text-muted">{{$oneNews->created_at}}</div>
-                                    <p class="card-text mb-auto">{{$oneNews->description}}</p>
+                            <!--div class="col">
+                                <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                    <div class="card-body d-flex flex-column align-items-start">
+                                        <h3 class="mb-0">{{$oneNews->name}}</h3>
+                                        <div class="mb-1 text-muted">{{$oneNews->created_at}}</div>
+                                        <p class="card-text mb-auto">{{$oneNews->description}}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div-->
-                        @endforeach
-                    </div>
+                            </div-->
+                            @endforeach
+                        </div>
+                    @endif
+                    @if(isset($lotteries) && $lotteries !== null && count($lotteries) > 0)
+                        <h2 class="gotic-fonts text-light">Последние победители</h2>
 
+                        <div class="card-deck pb-lg-5">
+                            @foreach($lotteries as $lottery)
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Номер: {{$lottery->keys->key}}</h5>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">{{$lottery->created_at}}</small>
+                                        </div>
+                                    </div>
+
+                                <!--div class="col">
+                                <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                    <div class="card-body d-flex flex-column align-items-start">
+                                        <h3 class="mb-0">{{$oneNews->name}}</h3>
+                                        <div class="mb-1 text-muted">{{$oneNews->created_at}}</div>
+                                        <p class="card-text mb-auto">{{$oneNews->description}}</p>
+                                    </div>
+                                </div>
+                            </div-->
+                                @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
-        @endif
 
         {{-- Block 5 --}}
         <div class="d-md-flex flex-column w-100 pl-md-3 text-center gotic-fonts block block-5">
@@ -187,9 +213,9 @@
                         </ul>
                     </div>
                 @endif
-                @if (session('status'))
+                @if (session('status_new_contact'))
                     <div class="alert alert-success">
-                        {{ session('status') }}
+                        {{ session('status_new_contact') }}
                     </div>
                 @endif
 
@@ -276,9 +302,9 @@
                         </ul>
                     </div>
                 @endif
-                @if (session('status'))
+                @if (session('status_new_contact'))
                     <div class="alert alert-success">
-                        {{ session('status') }}
+                        {{ session('status_new_contact') }}
                     </div>
                 @endif
 
@@ -402,8 +428,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Ваше сообщение</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="Textarea1">Ваше сообщение</label>
+                                <textarea class="form-control" id="Textarea1" name="message" rows="3"></textarea>
                                 <div class="invalid-feedback">
                                     Напишите что-нибудь)
                                 </div>
@@ -418,91 +444,5 @@
         </div>
         <!-- Scripts -->
         <script src="js/app.js" charset="utf-8"></script>
-        <script>
-            /*
-            bounty.default({
-                el: '.js-bounty',
-                value: Math.floor(Math.random()*10000000),
-                lineHeight: 1,
-                letterSpacing: 16,
-                animationDelay: 100,
-                letterAnimationDelay: 500
-            });
-            */
-            /////////////////////////////
-            let timestamp = 1559498400000;
-            let timerStr = '';
-            let htmlParentElementName = 'div';
-            let classParentStr = 'col-3 p-0';
-            let htmlChildElementName = 'span';
-            let classChildStr = 'badge badge-light';
-
-            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%D</' + htmlChildElementName + '><span class="timer_notation">Дни</span></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%H</' + htmlChildElementName + '><span class="timer_notation">Часы</span></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%M</' + htmlChildElementName + '><span class="timer_notation">Минуты</span></' + htmlParentElementName + '>';
-            timerStr += '<' + htmlParentElementName + ' class="' + classParentStr + '"><' + htmlChildElementName + ' class="' + classChildStr + '">%S</' + htmlChildElementName + '><span class="timer_notation">Секунды</span></' + htmlParentElementName + '>';
-
-            $('#timer').countdown(timestamp, function(event) {
-                $(this).html(event.strftime(timerStr));
-            });
-            /////////////////////////////
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation');
-                    // Loop over them and prevent submission
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                        }, false);
-                    });
-                }, false);
-            })();
-
-            (function() {
-                'use strict';
-                window.addEventListener('resize', function(e) {
-                    e = e || event;
-
-                    let target = e.target || e.srcElement;
-
-                    let width = target.innerWidth;
-
-                    let rollerWrap = document.getElementsByClassName('roller');
-                    let bountyWrap = document.getElementsByClassName('js-bounty');
-                    let svg = bountyWrap[0].getElementsByTagName('svg');
-
-                    if(width < 576){
-                        startOdometer(16);
-                    }else if(width >= 992){
-                        startOdometer(33);
-                    }else if(width >= 768){
-                        startOdometer(24);
-                    }else if(width >= 576){
-                        startOdometer(20);
-                    }
-
-
-                }, false);
-            })();
-
-            function startOdometer(letterSpacing){
-                bounty.default({
-                    el: '.js-bounty',
-                    value: 1234567,
-                    lineHeight: 1,
-                    letterSpacing: letterSpacing,
-                    animationDelay: 0,
-                    letterAnimationDelay: 0
-                });
-            }
-
-        </script>
-
     </body>
 </html>

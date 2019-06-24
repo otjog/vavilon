@@ -19,4 +19,9 @@ class Customer extends Model
         return $this->hasMany('App\Models\Task');
     }
 
+    public function lotteries()
+    {
+        return $this->hasManyThrough('App\Models\Lottery', 'App\Models\Key');
+    }
+
 }
