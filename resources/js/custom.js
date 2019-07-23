@@ -84,12 +84,18 @@ $(document).ready(function()
 
 /* Odometr */
 
-function startOdometer(lotteryKey){
+function startOdometer(lotteryKeys){
 
-    let width = 1000;
+    let width = window.innerWidth;
 
     let bountyWrap = document.getElementsByClassName('js-bounty');
-//    let lotteryKey = bountyWrap[0].dataset.lotterykey;
+    /**
+     * Получаем последний номер на счетчике. Чтобы новое вращение начиналось с этого числа, а не с числа вида 0000000.
+     * Мы сохраняем его в массив с индексом "-1", чтобы в цикле в первой итерации обратиться к нему через выражение
+     * вида lotteryKeys[i -1], при этом элемент с таким индексом не влияет на длину массива
+     */
+    lotteryKeys[-1] = bountyWrap[0].dataset.lotterykey;
+
     let letterSpacing = 16;
 
     if(width < 576){
@@ -102,14 +108,21 @@ function startOdometer(lotteryKey){
         letterSpacing = 20;
     }
 
-    bounty.default({
-        el: '.js-bounty',
-        value: lotteryKey,
-        lineHeight: 1,
-        letterSpacing: letterSpacing,
-        animationDelay: 0,
-        letterAnimationDelay: 0
-    });
+
+    for (let i = 0; i < lotteryKeys.length; i++) {
+        setTimeout(function () {
+            bounty.default({
+                el: '.js-bounty',
+                initialValue: lotteryKeys[i-1],
+                value: lotteryKeys[i],
+                lineHeight: 1,
+                letterSpacing: letterSpacing,
+                animationDelay: 0,
+                letterAnimationDelay: 0
+            })
+        }, 7000 * i);
+
+    }
 }
 
 /* END Odometr */
@@ -131,9 +144,9 @@ function startEventLottery()
 
         if (ajaxReq.req.readyState !== 4) return;
 
-        let lotteryKey = String(ajaxReq.req.responseText);
+        let lotteryKeys = JSON.parse(ajaxReq.req.responseText);
 
-        startOdometer(lotteryKey);
+        startOdometer(lotteryKeys);
 
     };
 

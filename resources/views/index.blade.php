@@ -55,9 +55,9 @@
                 <h1 class="gotic-fonts mb-4">Вавилонская лотерея</h1>
                 <h2>Выиграй ценный приз или действие</h2>
                 <div class="roller mx-auto">
-                    <div class="js-bounty text-center" data-lotterykey="{{isset($lotteries[0]->keys->key) ? $lotteries[0]->keys->key : '0000000' }}">
+                    <div class="js-bounty text-center" data-lotterykey="{{isset($lottery->keys[0]->key) ? $lottery->keys[0]->key : '0000000' }}">
                         <span class="default-number">
-                           {{isset($lotteries[0]->keys->key) ? $lotteries[0]->keys->key : '0000000' }}
+                           {{isset($lottery->keys[0]->key) ? $lottery->keys[0]->key : '0000000' }}
                         </span>
                     </div>
                 </div>
@@ -133,43 +133,24 @@
                                     </div>
                                 </div>
 
-                            <!--div class="col">
-                                <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                    <div class="card-body d-flex flex-column align-items-start">
-                                        <h3 class="mb-0">{{$oneNews->name}}</h3>
-                                        <div class="mb-1 text-muted">{{$oneNews->created_at}}</div>
-                                        <p class="card-text mb-auto">{{$oneNews->description}}</p>
-                                    </div>
-                                </div>
-                            </div-->
                             @endforeach
-                        </div>
-                    @endif
-                    @if(isset($lotteries) && $lotteries !== null && count($lotteries) > 0)
-                        <h2 class="gotic-fonts text-light">Последние победители</h2>
 
-                        <div class="card-deck pb-lg-5">
-                            @foreach($lotteries as $lottery)
 
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Номер: {{$lottery->keys->key}}</h5>
-                                        </div>
-                                        <div class="card-footer">
-                                            <small class="text-muted">{{$lottery->created_at}}</small>
-                                        </div>
-                                    </div>
-
-                                <!--div class="col">
-                                <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                    <div class="card-body d-flex flex-column align-items-start">
-                                        <h3 class="mb-0">{{$oneNews->name}}</h3>
-                                        <div class="mb-1 text-muted">{{$oneNews->created_at}}</div>
-                                        <p class="card-text mb-auto">{{$oneNews->description}}</p>
-                                    </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Последние победители</h5>
+                                    @for($i = 0; $i < count($lottery->keys) && $i < $lottery->shortListKeysQuantity; $i++)
+                                        <p class="card-text">{{$lottery->keys[$i]->key}}</p>
+                                    @endfor
+                                    @isset($lottery->declisionKeysPhrase)
+                                        <a data-toggle="modal" data-target="#lastLottery" href="#" >{{$lottery->declisionKeysPhrase}}</a>
+                                    @endisset
                                 </div>
-                            </div-->
-                                @endforeach
+                                <div class="card-footer">
+                                    <small class="text-muted">{{$lottery->created_at}}</small>
+                                </div>
+                            </div>
+
                         </div>
                     @endif
                 </div>
@@ -439,6 +420,22 @@
                             <button type="submit" class="btn btn-danger btn-block btn-lg">Отправить</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="lastLottery" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-center">Последние победители</h5>
+                        @for($i = 0; $i < count($lottery->keys); $i++)
+                            <p class="card-text">{{$lottery->keys[$i]->key}}</p>
+                        @endfor
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{$lottery->created_at}}</small>
+                    </div>
                 </div>
             </div>
         </div>

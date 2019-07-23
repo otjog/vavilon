@@ -30,7 +30,7 @@ class SendCustomerNotification
     public function handle(CustomerCreated $event)
     {
 
-        Mail::to(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
+        Mail::to(env('MAIL_TO_ADDRESS'), env('MAIL_FROM_NAME'))
             ->send(new MailAboutCustomerCreated($event->customer));
     }
 }

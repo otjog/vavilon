@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLotteriesTable extends Migration
+class AddQuantityToEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateLotteriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lotteries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->boolean('active')->unsigned();
-            $table->timestamps();
+        Schema::table('events', function (Blueprint $table) {
+            $table->integer('quantity')->unsigned()->after('time');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateLotteriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lotteries');
+        Schema::table('events', function (Blueprint $table) {
+            $table->dropColumn('quantity');
+        });
     }
 }

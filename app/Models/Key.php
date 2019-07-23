@@ -15,6 +15,6 @@ class Key extends Model
 
     public function lotteries()
     {
-        return $this->hasMany('App\Models\Lottery');
+        return $this->belongsToMany('App\Models\Lottery', 'lottery_has_key')->withTimestamps();
     }
 }

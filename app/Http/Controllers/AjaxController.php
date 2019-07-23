@@ -29,7 +29,11 @@ class AjaxController extends Controller
 
         $lottery = $lotteries->getLastLottery();
 
-        $this->data = $lottery->keys->key;
+        $keysCollections = $lottery->keys;
+
+        foreach ($keysCollections as $keyCollection) {
+            $this->data[] = $keyCollection->key;
+        }
 
         return $this->sendResponse();
 

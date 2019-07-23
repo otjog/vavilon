@@ -12,7 +12,7 @@ class News extends Model
     {
         return self::where('active', 1)
         ->orderBy('created_at', 'desc')
-        ->take(3)
+        ->take(2)
         ->get();
     }
 }

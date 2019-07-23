@@ -10,7 +10,6 @@ class Event extends Model
 
     public function getNextEvent()
     {
-
         //функция неверная, нужна сортировка по полю time
         $event = self::where('active', 1)
             ->orderBy('created_at', 'desc')

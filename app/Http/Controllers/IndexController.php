@@ -21,7 +21,7 @@ class IndexController extends Controller
 
         $this->data['event'] = $events->getNextEvent();
 
-        $this->data['lotteries'] = $lotteries->getLastLotteries();
+        $this->data['lottery'] = $lotteries->getLastLottery();
     }
 
     public function index()
@@ -35,7 +35,7 @@ class IndexController extends Controller
 
         unset($data['_token']);
 
-        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactToUs($data));
+        Mail::to(env('MAIL_TO_ADDRESS'), env('MAIL_FROM_NAME'))->send(new ContactToUs($data));
 
         return redirect('/')->with('status_new_contact', 'Мы получили ваш донос!');
     }

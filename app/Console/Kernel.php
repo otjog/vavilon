@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
         $timestampNow = round((time()+10800)/60)*60;
         $timestampEvent = round( $event->timestamp/60)*60;
 
-        $schedule->call(function () use ($timestampNow, $timestampEvent) {
+        $schedule->call(function () use ($timestampNow, $timestampEvent, $event) {
             if ($timestampNow === $timestampEvent) {
 
                 $keys = Key::select('id')
@@ -43,14 +43,22 @@ class Kernel extends ConsoleKernel
 
                 $count = count($keys);
 
-                $winner = $keys[rand(0, $count-1)];
-
                 $lottery = new Lottery();
 
                 $lottery->active = 1;
-                $lottery->key_id = $winner->id;
 
                 $lottery->save();
+
+                for ($i = 0; $i < $event->quantity; $i++) {
+                    $key = $keys[rand(0, $count-1)];
+
+                    DB::table('lottery_has_key')->insert(
+                        [
+                            'lottery_id' => $lottery->id,
+                            'key_id' => $key->id
+                        ]
+                    );
+                }
 
             }
         })->everyMinute();
