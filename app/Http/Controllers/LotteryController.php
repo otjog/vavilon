@@ -14,7 +14,10 @@ class LotteryController extends Controller
      */
     public function index()
     {
-        $lotteries = Lottery::with('keys')->orderBy('created_at', 'desc')->get();
+        $lotteries = Lottery::with(['keys' => function ($query) {
+            $query->with('customer');
+        }])
+            ->orderBy('created_at', 'desc')->get();
 
         return view( 'admin.component.lottery.index', ['lotteries' => $lotteries]);
     }
