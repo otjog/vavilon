@@ -247,15 +247,15 @@
         <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-contact">
             <div class="col-md-8 my-lg-5 p-lg-5 py-3 mx-auto">
                 <h2 class="gotic-fonts">
-                    Компания думает о вас!
+                    Компания думает о тебе!
                 </h2>
             </div>
         </div>
 
         {{-- Block Sending --}}
-        <div class="d-md-flex flex-column w-100 pl-md-3 pt-5 text-center block block-sending">
+        <div class="d-md-flex flex-column w-100 pl-md-3 pt-0 pt-md-5 text-center block block-sending">
 
-            <h2 class="gotic-fonts">Сотрудничество с Компанией</h2>
+            <h2 class="gotic-fonts d-none d-md-block">Сотрудничество с Компанией</h2>
 
             <div class="col-md-6 mx-auto my-md-5 px-5 py-3 rounded bg-transparent-dark">
                 <p class="lead font-weight-normal ">

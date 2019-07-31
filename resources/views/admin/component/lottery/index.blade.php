@@ -11,6 +11,10 @@
                         <th>#</th>
                         <th>Время Розыгрыша
                         <th>Выигрышный номер</th>
+                        <th>Имя</th>
+                        <th>Email</th>
+                        <th>Телефон</th>
+                        <th>Город</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -21,6 +25,10 @@
                                     <td>{{$lottery->id}}</td>
                                     <td>{{$lottery->created_at}}</td>
                                     <td>{{$keyModel->key}}</td>
+                                    <td>{{$keyModel->customer->name}}</td>
+                                    <td>{{$keyModel->customer->email}}</td>
+                                    <td>{{$keyModel->customer->phone}}</td>
+                                    <td>{{$keyModel->customer->city}}</td>
                                 </tr>
                             @endforeach
                         @endif
