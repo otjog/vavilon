@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ContactToUs extends Mailable
+class TaskSender extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class ContactToUs extends Mailable
      */
     public function build()
     {
-        return $this->view('email.contact-to-us', ['data' => $this->data]);
+        return $this->view('email.task_sender', ['data' => $this->data]);
     }
 }

@@ -90,19 +90,12 @@
                 <div class="row" id="timer" data-timestamp="{{$event->timestamp}}"></div>
 
                 @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    <span id="modal_caller" data-modal="modal"></span>
                 @endif
                 @if (session('status_new_customer'))
-                    <div class="alert alert-success">
-                        {{ session('status_new_customer') }}
-                    </div>
+                    <span id="modal_caller" data-modal="success"></span>
                 @endif
+
 
                 <div class="mt-5">
                     <!-- Button trigger modal -->
@@ -185,21 +178,6 @@
         {{-- Block CONTACT --}}
         <div class="d-md-flex flex-column w-100 pl-md-3 text-center block block-contact">
             <div class="col-md-8 p-lg-5 py-3 mx-auto">
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if (session('status_new_contact'))
-                    <div class="alert alert-success">
-                        {{ session('status_new_contact') }}
-                    </div>
-                @endif
-
                 <div class="my-5">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#contact">
@@ -274,21 +252,6 @@
             </div>
 
             <div class="col-md-8 p-lg-5 py-3 mx-auto">
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if (session('status_new_contact'))
-                    <div class="alert alert-success">
-                        {{ session('status_new_contact') }}
-                    </div>
-                @endif
-
                 <div class="my-5">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#contact">
@@ -317,19 +280,28 @@
         <!-- Modal -->
         <div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content rounded">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalLabel">Заявка на получение уникального кода</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="post" action="{{route('customers.store')}}" class="needs-validation" novalidate>
                         {{ csrf_field() }}
                         <div class="modal-body text-left">
                             <div class="form-group">
                                 <label for="name">Ваше Имя</label>
-                                <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Укажите вашу имя" required>
+                                <input value="{{ old('name') }}" type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Укажите ваше имя" required>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
@@ -339,27 +311,39 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone">Ваш телефон</label> <small>(10 цифр, без 8 или +7)</small>
-                                <input type="tel" class="form-control form-control-lg" id="phone" name="phone" placeholder="пример: 9205743885" required>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">+7</div>
+                                        </div>
+
+                                        <input value="{{ old('phone') }}" type="tel" class="form-control form-control-lg" id="phone" name="phone" placeholder="пример: 9205743885" required>
+                                    </div>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
                                 <div class="invalid-feedback">
-                                    Укажите ваш телефон
+                                    Укажите корректный телефон, только 10 цифр без 8 или +7
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="email">Ваш email</label>
-                                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Укажите ваш email" required>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@</div>
+                                    </div>
+
+                                    <input value="{{ old('email') }}" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Укажите ваш email" required>
+                                </div>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
                                 <div class="invalid-feedback">
-                                    Укажите ваш email
+                                    Укажите корректный email
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="city">Ваш город</label>
-                                <input type="text" class="form-control form-control-lg" id="city" name="city" placeholder="Укажите ваш город" required>
+                                <input value="{{ old('city') }}" type="text" class="form-control form-control-lg" id="city" name="city" placeholder="Укажите ваш город" required>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
@@ -390,7 +374,7 @@
                         <div class="modal-body text-left">
                             <div class="form-group">
                                 <label for="name">Ваше Имя</label>
-                                <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Укажите вашу имя" required>
+                                <input value="{{ old('name') }}" type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Укажите вашу имя" required>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
@@ -400,7 +384,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Ваш email</label>
-                                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Укажите ваш email" required>
+                                <input value="{{ old('email') }}" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Укажите ваш email" required>
                                 <div class="valid-feedback">
                                     Корректные данные
                                 </div>
@@ -410,7 +394,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Textarea1">Ваше сообщение</label>
-                                <textarea class="form-control" id="Textarea1" name="message" rows="3"></textarea>
+                                <textarea value="{{ old('message') }}" class="form-control" id="Textarea1" name="message" rows="3"></textarea>
                                 <div class="invalid-feedback">
                                     Напишите что-нибудь)
                                 </div>
@@ -439,6 +423,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal" id="success" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded">
+                    <div class="modal-header">
+                        Спасибо Вам!
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    {{ session('status_new_customer') }}
+
+                </div>
+            </div>
+        </div>
+
         <!-- Scripts -->
         <script src="js/app.js" charset="utf-8"></script>
     </body>

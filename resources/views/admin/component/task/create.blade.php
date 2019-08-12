@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label for="taskCustomer">Выберите игрока <small>(не обязательно)</small></label>
                         <select class="form-control" id="taskCustomer" name="customer_id">
-                            <option>Выберите игрока</option>
+                            <option value="0">Выберите игрока</option>
                             @foreach($customers as $customer)
                                 <option value="{{$customer->id}}">{{$customer->phone}} - {{ $customer->name}} - {{$customer->city}}</option>
                             @endforeach

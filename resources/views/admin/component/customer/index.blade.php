@@ -100,7 +100,8 @@
                                         data-toggle="modal"
                                         data-target="#customerMailModal"
                                         data-customername="{{$customer->name}}"
-                                        data-customeremail="{{$customer->email}}">
+                                        data-customeremail="{{$customer->email}}"
+                                        data-customerid="{{$customer->id}}">
                                     Отправить задание
                                 </button>
                             </td>
@@ -120,28 +121,35 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form method="post" action="{{route('tasks.store')}}">
+                    {{csrf_field()}}
+                    <div class="modal-body">
                         <fieldset disabled>
                             <div class="form-group">
                                 <label for="customerMailName">Кому</label>
-                                <input type="text" id="customerMailName" class="form-control" placeholder="Disabled input">
+                                <input type="text" id="customerMailName" name="customer_name" class="form-control" placeholder="Disabled input">
                             </div>
                             <div class="form-group">
                                 <label for="customerMailEmail">Адрес</label>
-                                <input type="text" id="customerMailEmail" class="form-control" placeholder="Disabled input">
+                                <input type="text" id="customerMailEmail" name="customer_email" class="form-control" placeholder="Disabled input">
                             </div>
                         </fieldset>
+                        <input type="hidden" id="customerId" name="customer_id">
+                        <input type="hidden" name="active" value="1">
                         <div class="form-group">
-                            <label for="customerMailMessage" class="col-form-label">Суть задания:</label>
-                            <textarea class="form-control" id="customerMailMessage"></textarea>
+                            <label for="taskMailTitle" class="col-form-label">Название:</label>
+                            <input  type="text" class="form-control" id="taskMailTitle" name="name">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary">Отправить задание</button>
-                </div>
+                        <div class="form-group">
+                            <label for="taskMailMessage" class="col-form-label">Суть задания:</label>
+                            <textarea class="form-control" id="taskMailMessage" name="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary">Отправить задание</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

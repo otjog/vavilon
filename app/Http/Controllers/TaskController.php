@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TaskSender;
 
 class TaskController extends Controller
 {
@@ -47,13 +49,21 @@ class TaskController extends Controller
 
         $data = array_diff_key($request->all(), $wasteArray);
 
+        if($data['customer_id'] === '0')
+            unset($data['customer_id']);
+
         if(isset($data['active'])){
             $data['active'] = 1;
         }else{
             $data['active'] = 0;
         }
 
-        Task::create($data);
+        $task = Task::create($data);
+
+        if (isset($data['customer_id'])) {
+            $customer = Customer::where('id', '=', $data['customer_id'])->first();
+            Mail::to($customer->email, env('MAIL_FROM_NAME'))->send(new TaskSender($task));
+        }
 
         return redirect('/admin/tasks');
     }
@@ -100,6 +110,9 @@ class TaskController extends Controller
 
         $data = array_diff_key($request->all(), $wasteArray);
 
+        if($data['customer_id'] === '0')
+            unset($data['customer_id']);
+
         if(isset($data['active'])){
             $data['active'] = 1;
         }else{
@@ -108,6 +121,14 @@ class TaskController extends Controller
 
         Task::where('id', $id)
             ->update($data);
+
+        if (isset($data['customer_id'])) {
+
+            $task = Task::where('id', $id)->first();
+
+            $customer = Customer::where('id', '=', $data['customer_id'])->first();
+            Mail::to($customer->email, env('MAIL_FROM_NAME'))->send(new TaskSender($task));
+        }
 
         return redirect('/admin/tasks');
 

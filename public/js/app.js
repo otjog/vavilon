@@ -36879,14 +36879,25 @@ $('#customerMailModal').on('show.bs.modal', function (event) {
   var name = button.data('customername'); // Extract info from data-* attributes
 
   var email = button.data('customeremail'); // Extract info from data-* attributes
+
+  var customerId = button.data('customerid'); // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
   var modal = $(this);
   modal.find('.modal-body #customerMailName').val(name);
   modal.find('.modal-body #customerMailEmail').val(email);
+  modal.find('.modal-body #customerId').val(customerId);
 });
+var modalCaller = document.getElementById('modal_caller');
+
+if (modalCaller !== undefined && modalCaller !== null) {
+  var modalId = modalCaller.dataset.modal;
+  console.log(modalId);
+  $('#' + modalId).modal('show');
+}
 /* Admin Event Calendar */
+
 
 $(document).ready(function () {
   var oDTP2;
