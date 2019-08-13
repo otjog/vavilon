@@ -121,20 +121,22 @@
                             @endforeach
 
 
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Последние победители</h5>
-                                    @for($i = 0; $i < count($lottery->keys) && $i < $lottery->shortListKeysQuantity; $i++)
-                                        <p class="card-text">{{$lottery->keys[$i]->key}}</p>
-                                    @endfor
-                                    @isset($lottery->declisionKeysPhrase)
-                                        <a data-toggle="modal" data-target="#lastLottery" href="#" >{{$lottery->declisionKeysPhrase}}</a>
-                                    @endisset
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">{{$lottery->created_at}}</small>
-                                </div>
-                            </div>
+                            @if($lottery !== null)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Последние победители</h5>
+                                            @for($i = 0; $i < count($lottery->keys) && $i < $lottery->shortListKeysQuantity; $i++)
+                                                <p class="card-text">{{$lottery->keys[$i]->key}}</p>
+                                            @endfor
+                                            @isset($lottery->declisionKeysPhrase)
+                                                <a data-toggle="modal" data-target="#lastLottery" href="#" >{{$lottery->declisionKeysPhrase}}</a>
+                                            @endisset
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">{{$lottery->created_at}}</small>
+                                        </div>
+                                    </div>
+                                @endif
 
                         </div>
                     @endif
@@ -409,21 +411,23 @@
             </div>
         </div>
 
-        <div class="modal" id="lastLottery" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="text-center">Последние победители</h5>
-                        @for($i = 0; $i < count($lottery->keys); $i++)
-                            <p class="card-text">{{$lottery->keys[$i]->key}}</p>
-                        @endfor
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">{{$lottery->created_at}}</small>
+        @if($lottery !== null)
+            <div class="modal" id="lastLottery" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-center">Последние победители</h5>
+                            @for($i = 0; $i < count($lottery->keys); $i++)
+                                <p class="card-text">{{$lottery->keys[$i]->key}}</p>
+                            @endfor
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{$lottery->created_at}}</small>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
 
         <div class="modal" id="success" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">

@@ -20,13 +20,16 @@ class Lottery extends Model
             ->orderBy('created_at', 'desc')
             ->with('keys')
             ->first();
-        $lottery->shortListKeysQuantity = 4;
 
-        $moreQuantity = count($lottery->keys) - $lottery->shortListKeysQuantity;
+        if ($lottery !== null) {
+            $lottery->shortListKeysQuantity = 4;
 
-        if ($moreQuantity > 0) {
-            $declisionOfWord = DeclesionsOfWord::make($moreQuantity, ['номер', 'номера', 'номеров']);
-            $lottery->declisionKeysPhrase = "Ещё " . $moreQuantity . " " . $declisionOfWord;
+            $moreQuantity = count($lottery->keys) - $lottery->shortListKeysQuantity;
+
+            if ($moreQuantity > 0) {
+                $declisionOfWord = DeclesionsOfWord::make($moreQuantity, ['номер', 'номера', 'номеров']);
+                $lottery->declisionKeysPhrase = "Ещё " . $moreQuantity . " " . $declisionOfWord;
+            }
         }
 
         return $lottery;
