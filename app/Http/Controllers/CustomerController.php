@@ -53,7 +53,6 @@ class CustomerController extends Controller
         event(new CustomerCreated($customer));
 
         return redirect('/')->with('status_new_customer', 'Вы зарегистрированы в системе! Ждите письмо с дальнейшими указаниями.');
-
     }
 
     /**

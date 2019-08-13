@@ -30,14 +30,16 @@
                         <input type="text" class="form-control" id="taskName" name="name" value="{{$task->name}}" placeholder="Название задачи">
                     </div>
                 </div>
+
                 <div class="col-lg-5 col-12">
                     <div class="form-group">
                         <label for="taskCustomer">Выберите игрока <small>(не обязательно)</small></label>
                         <select class="form-control" id="taskCustomer" name="customer_id">
+                            <option value="0">Выберите игрока</option>
                             @foreach($customers as $customer)
                                 <option
                                         value="{{$customer->id}}"
-                                        @if($customer->id === $task['customer']->id)
+                                        @if($task['customer'] !== null && $customer->id === $task['customer']->id)
                                             selected
                                         @endif
                                 >

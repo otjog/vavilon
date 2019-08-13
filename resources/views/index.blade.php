@@ -89,14 +89,6 @@
                 <h2 class="gotic-fonts">Время до следующего розыгрыша</h2>
                 <div class="row" id="timer" data-timestamp="{{$event->timestamp}}"></div>
 
-                @if (count($errors) > 0)
-                    <span id="modal_caller" data-modal="modal"></span>
-                @endif
-                @if (session('status_new_customer'))
-                    <span id="modal_caller" data-modal="success"></span>
-                @endif
-
-
                 <div class="mt-5">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#modal">
@@ -277,6 +269,15 @@
             </div>
         </footer>
 
+        @if (count($errors) > 0)
+            <span id="modal_caller" data-modal="modal"></span>
+        @endif
+        @if (session('status_new_customer'))
+            <span id="modal_caller" data-modal="success"></span>
+        @endif
+        @if (session('status_new_contact'))
+            <span id="modal_caller" data-modal="success"></span>
+        @endif
         <!-- Modal -->
         <div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -425,18 +426,22 @@
         </div>
 
         <div class="modal" id="success" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content rounded">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                <div class="modal-content gotic-fonts rounded">
                     <div class="modal-header">
-                        Спасибо Вам!
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h1 class="w-100 text-center">Спасибо Вам!
+                        </h1>
+                        <button type="button" class="close ml-0" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-
-                    {{ session('status_new_customer') }}
-
+                    <div class="modal-body py-5 text-center" style="font-size:1.5rem">
+                        <p>{{ session('status_new_customer') }}</p>
+                        <p>{{ session('status_new_contact') }}</p>
+                    </div>
                 </div>
+
             </div>
         </div>
 
